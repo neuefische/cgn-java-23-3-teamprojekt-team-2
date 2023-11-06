@@ -3,9 +3,7 @@ package de.neuefische.team2.backend.controller;
 import de.neuefische.team2.backend.models.Workout;
 import de.neuefische.team2.backend.service.WorkoutService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,10 @@ public class WorkoutController {
     @GetMapping("")
     public List<Workout> getAllWorkouts() {
         return workoutService.getAllWorkouts();
+    }
+
+    @PostMapping("")
+    public Workout addWorkout(@RequestBody Workout workout) {
+        return workoutService.addWorkout(workout);
     }
 }
