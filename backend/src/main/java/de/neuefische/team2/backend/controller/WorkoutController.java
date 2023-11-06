@@ -18,8 +18,14 @@ public class WorkoutController {
         return workoutService.getAllWorkouts();
     }
 
+    @GetMapping("/{id}")
+    public Workout getWorkoutById(@PathVariable String id) {
+        return workoutService.getWorkoutById(id);
+    }
+
     @PostMapping("")
     public Workout addWorkout(@RequestBody Workout workout) {
         return workoutService.addWorkout(workout);
     }
+
 }
