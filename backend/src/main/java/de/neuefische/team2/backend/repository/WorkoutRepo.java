@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkoutRepo extends MongoRepository <Workout, String> {
-
 }
