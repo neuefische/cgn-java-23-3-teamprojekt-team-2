@@ -1,8 +1,6 @@
 package de.neuefische.team2.backend.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.neuefische.team2.backend.exceptions.NoSuchWorkout;
 import de.neuefische.team2.backend.models.Weekday;
 import de.neuefische.team2.backend.models.Workout;
 import de.neuefische.team2.backend.repository.WorkoutRepo;
@@ -28,11 +26,7 @@ class WorkoutControllerTest {
     private WorkoutRepo workoutRepo;
     @Autowired
     private ObjectMapper objectMapper;
-    private final String baseURI = "/api/workouts";
-
-    @Test
-    void getAllWorkouts() {
-    }
+    private static final String BASE_URI = "/api/workouts";
 
     @Test
     @DirtiesContext
@@ -46,7 +40,7 @@ class WorkoutControllerTest {
                 .build();
         String workoutAsJson = objectMapper.writeValueAsString(workout);
         workoutRepo.save(workout);
-        mockMvc.perform(get(baseURI + "/" +workout.id()))
+        mockMvc.perform(get(BASE_URI + "/" +workout.id()))
                 .andExpect(status().isOk())
                 .andExpect(content().json(workoutAsJson));
     }
@@ -54,10 +48,6 @@ class WorkoutControllerTest {
     @Test
     @DirtiesContext
     void getWorkoutById_invalidId_thenThrowException() {
-        assertThrows(Exception.class, () -> mockMvc.perform(get(baseURI + "/1")));
-    }
-
-    @Test
-    void addWorkout() {
+        assertThrows(Exception.class, () -> mockMvc.perform(get(BASE_URI + "/1")));
     }
 }
