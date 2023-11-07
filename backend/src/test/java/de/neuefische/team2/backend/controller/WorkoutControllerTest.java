@@ -47,7 +47,9 @@ class WorkoutControllerTest {
 
     @Test
     @DirtiesContext
-    void getWorkoutById_invalidId_thenThrowException() {
-        assertThrows(Exception.class, () -> mockMvc.perform(get(BASE_URI + "/1")));
+    void getWorkoutById_invalidId_thenThrowException() throws Exception {
+        mockMvc.perform(get(BASE_URI + "/invalidId"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("There is no workout with this id"));
     }
 }

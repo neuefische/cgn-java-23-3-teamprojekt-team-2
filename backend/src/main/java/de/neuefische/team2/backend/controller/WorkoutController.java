@@ -1,8 +1,11 @@
 package de.neuefische.team2.backend.controller;
 
+import de.neuefische.team2.backend.exceptions.NoSuchWorkout;
 import de.neuefische.team2.backend.models.Workout;
 import de.neuefische.team2.backend.service.WorkoutService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,4 +31,8 @@ public class WorkoutController {
         return workoutService.addWorkout(workout);
     }
 
+    @ExceptionHandler(NoSuchWorkout.class)
+    public ResponseEntity<String> handleNoSuchWorkoutException(NoSuchWorkout e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
 }
