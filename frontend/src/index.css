@@ -21,4 +21,5 @@ html {
 .container {
     padding: 40px 90px;
     min-height: 100vh;
+    background-color: #1f1f1f;
 }

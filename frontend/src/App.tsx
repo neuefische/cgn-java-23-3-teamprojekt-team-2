@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Route, Routes} from "react-router-dom";
 import Home from "./pages/Home.tsx";
+import {Workout} from "./interfaces/types.ts";
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
         <Header />
         <div className={"container"}>
             <Routes>
-                <Route path={"/"} element={<Home />} />
+                <Route path={"/"} element={<Home workouts={workouts} setWorkouts={setWorkouts}/>} />
             </Routes>
         </div>
     </>

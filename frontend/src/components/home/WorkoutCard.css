@@ -1,0 +1,11 @@
+.workout-card {
+border: solid red 1px;
+    height: 150px;
+    padding: 15px 20px;
+    margin: 0 25px 25px;
+    border-radius: 25px;
+    color: var(--color-4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

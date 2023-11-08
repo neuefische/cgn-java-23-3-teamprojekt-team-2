@@ -1,4 +1,4 @@
-type Workout = {
+export type Workout = {
     id:string,
     day: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY",
     workoutName:string,
@@ -6,6 +6,11 @@ type Workout = {
     plan:string
 }
 
-type TypeHome = {
-    workouts: Workout[]
+export type TypeHome = {
+    workouts: Workout[],
+    setWorkouts: ((value: Workout[]) => void)
+}
+
+export type TypeWorkoutCard = {
+    workout: Workout
 }
