@@ -1,8 +1,12 @@
+import Header from "./components/header/Header.tsx";
 
 function App() {
   return (
     <>
-      <p>Hello World</p>
+        <Header />
+        <div className={"container"}>
+            <p>Hello World</p>
+        </div>
     </>
   )
 }
