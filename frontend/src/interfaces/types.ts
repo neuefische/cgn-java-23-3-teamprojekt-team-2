@@ -11,6 +11,10 @@ export type TypeHome = {
     setWorkouts: ((value: Workout[]) => void)
 }
 
+export type TypeDetailsPage = {
+    workouts: Workout[]
+}
+
 export type TypeWorkoutCard = {
     workout: Workout
 }

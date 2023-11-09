@@ -5,7 +5,7 @@ function Home (props: TypeHome){
 
     return (
         <main>
-            {props.workouts.map(workout => <WorkoutCard  workout={workout} /> )}
+            {props.workouts.map(workout => <WorkoutCard key={workout.id} workout={workout} /> )}
         </main>
     );
 }

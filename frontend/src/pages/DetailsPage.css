@@ -1,0 +1,53 @@
+/* generell styles */
+.details-page,
+.error-page{
+    color: var(--color-4);
+}
+
+.details-page {
+    width: 500px;
+    margin: 0 auto;
+    border: 1px solid;
+    padding: 20px 30px;
+}
+
+.error-page {
+    margin-top: 20vh;
+    text-align: center;
+    line-height: 2rem;
+}
+
+/* details page styles */
+.details-page-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+.details-page-header h2{
+    font-size: 1.8rem;
+    color: var(--color-3);
+}
+
+.details-page-header p{
+    font-size: .8rem;
+    opacity: .8;
+}
+
+.details-page-main  p {
+    margin-bottom: 30px;
+}
+
+.details-page-description {
+    margin-top: 5px;
+    font-size: .75rem;
+    letter-spacing: 1px;
+    opacity: .4;
+}
+
+/* error page styles */
+.error-page span {
+    font-size: 1.8rem;
+    color: var(--color-3);
+}
