@@ -9,7 +9,6 @@ function WorkoutCard (props: TypeWorkoutCard) {
             <p>{props.workout.plan}</p>
             <p>{props.workout.day}</p>
             <p>{props.workout.description}</p>
-
         </section>
     );
 }
