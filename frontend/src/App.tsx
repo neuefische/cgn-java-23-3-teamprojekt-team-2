@@ -25,7 +25,6 @@ function App() {
         <div className={"container"}>
             <Routes>
                 <Route path={"/"} element={<Home workouts={workouts} setWorkouts={setWorkouts}/>} />
-                <Route path={"/workout/:id"} element={<p>Detail</p>} />
             </Routes>
         </div>
     </>
