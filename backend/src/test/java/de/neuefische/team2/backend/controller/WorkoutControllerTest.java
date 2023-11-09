@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,6 +29,33 @@ class WorkoutControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     private static final String BASE_URI = "/api/workouts";
+
+    @Test
+    @DirtiesContext
+    void getAllWorkouts_whenNoWorkoutIsInList_thenReturnEmptyList() throws Exception {
+        mockMvc.perform(get(BASE_URI))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[]"));
+    }
+
+    @Test
+    @DirtiesContext
+    void getAllWorkouts_whenOneWorkoutIsInList_thenReturnList() throws Exception {
+        Workout workout = Workout.builder()
+                .id("1")
+                .day(Weekday.MONDAY)
+                .workoutName("Test")
+                .description("Test description")
+                .plan("Test plan")
+                .build();
+        List<Workout> expected = List.of(workout);
+        workoutRepo.save(workout);
+
+        String expectedAsJson = objectMapper.writeValueAsString(expected);
+        mockMvc.perform(get(BASE_URI))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedAsJson));
+    }
 
     @Test
     @DirtiesContext
