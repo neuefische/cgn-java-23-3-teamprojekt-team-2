@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -27,6 +28,52 @@ class WorkoutControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     private static final String BASE_URI = "/api/workouts";
+
+    @Test
+    @DirtiesContext
+    void addWorkout() throws Exception {
+        Workout workout = Workout.builder()
+                .id("1")
+                .day(Weekday.WEDNESDAY)
+                .workoutName("New workout")
+                .description("New description")
+                .plan("New plan")
+                .build();
+        String workoutAsJson = objectMapper.writeValueAsString(workout);
+        workoutRepo.save(workout);
+        mockMvc.perform(post(BASE_URI)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(workoutAsJson))
+                .andExpect(status().isOk())
+                .andExpect(content().json(workoutAsJson));
+    }
+
+    @Test
+    @DirtiesContext
+    void addWorkout_whenJustOneFieldIsFilledOut_thenReturnNullForEmptyFields() throws Exception {
+        Workout workout = Workout.builder()
+                .id("1")
+                .day(null)
+                .workoutName(null)
+                .description(null)
+                .plan(null)
+                .build();
+        String workoutAsJson = objectMapper.writeValueAsString(workout);
+        workoutRepo.save(workout);
+        mockMvc.perform(post(BASE_URI)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(workoutAsJson))
+                .andExpect(status().isOk())
+                .andExpect(content().json(workoutAsJson));
+    }
+
+    @Test
+    @DirtiesContext
+    void addWorkout_whenRequestBodyIsEmpty_thenReturnError400() throws Exception {
+        mockMvc.perform(post(BASE_URI))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(""));
+    }
 
     @Test
     @DirtiesContext

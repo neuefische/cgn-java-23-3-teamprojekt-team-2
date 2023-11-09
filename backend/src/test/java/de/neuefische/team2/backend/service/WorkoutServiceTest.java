@@ -20,10 +20,6 @@ class WorkoutServiceTest {
     }
 
     @Test
-    void addWorkout() {
-    }
-
-    @Test
     void getWorkoutById_whenIdIsValid_thenReturnWorkout() {
         //GIVEN
         Workout expected = Workout.builder()
@@ -46,5 +42,17 @@ class WorkoutServiceTest {
     void getWorkoutById_whenIdIsInvalid_thenThrowError() {
         assertThrows(NoSuchWorkout.class, () -> workoutService.getWorkoutById("1"));
         verify(mockWorkoutRepo).findById("1");
+    }
+
+    @Test
+    void testAddWorkout() {
+        //GIVEN
+        Workout expected = new Workout("1", Weekday.TUESDAY, "Testworkout", "Testdescription", "Testplan");
+        //WHEN
+        when(mockWorkoutRepo.save(expected)).thenReturn(expected);
+        //THEN
+        Workout actual = workoutService.addWorkout(expected);
+        verify(mockWorkoutRepo).save(expected);
+        assertEquals(expected, actual);
     }
 }
