@@ -26,7 +26,7 @@ function App() {
         <div className={"container"}>
             <Routes>
                 <Route path={"/"} element={<Home workouts={workouts} setWorkouts={setWorkouts}/>} />
-                <Route path={"/workout/:id"} element={<DetailsPage workouts={workouts}/>} />
+                <Route path={"/workout/:id"} element={<DetailsPage />} />
             </Routes>
         </div>
     </>

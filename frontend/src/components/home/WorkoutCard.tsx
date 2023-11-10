@@ -22,10 +22,10 @@ function WorkoutCard (props: TypeWorkoutCard) {
             onClick={handleClick}
             onKeyDown={handleKeyDown}
             tabIndex={0}
-            aria-label={"Go to workout details"}
+            aria-labelledby={`workoutName-${props.workout.id}`}
             className={"workout-card"}
         >
-            <h3>{props.workout.workoutName}</h3>
+            <h3 id={`workoutName-${props.workout.id}`}>{props.workout.workoutName}</h3>
             <p>{props.workout.plan}</p>
             <p>{props.workout.day}</p>
             <p>{props.workout.description}</p>
