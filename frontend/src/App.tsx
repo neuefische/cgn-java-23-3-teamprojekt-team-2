@@ -5,6 +5,7 @@ import {Route, Routes} from "react-router-dom";
 import Home from "./pages/Home.tsx";
 import {Workout} from "./interfaces/types.ts";
 import DetailsPage from "./pages/DetailsPage.tsx";
+import EditPage from "./pages/EditPage.tsx";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<Home workouts={workouts} setWorkouts={setWorkouts}/>} />
                 <Route path={"/workout/:id"} element={<DetailsPage />} />
+                <Route path={"/workout/:id/edit"} element={<EditPage />} />
             </Routes>
         </div>
     </>

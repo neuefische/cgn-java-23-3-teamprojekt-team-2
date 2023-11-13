@@ -46,6 +46,10 @@
     opacity: .4;
 }
 
+.btn-edit {
+    padding: 10px 20px;
+}
+
 /* error page styles */
 .error-page span {
     font-size: 1.8rem;
