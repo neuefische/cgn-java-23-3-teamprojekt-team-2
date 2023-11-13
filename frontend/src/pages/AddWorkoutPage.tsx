@@ -25,7 +25,9 @@ function AddWorkoutPage (props: Props) {
             axios.post('/api/workouts', newWorkoutData)
                 .then(response => {
                     props.setWorkouts()
-
+                    setName("");
+                    setDescription("");
+                    setPlan("");
                 })
                 .catch(error => {
                     console.error('Error adding data:', error);
@@ -63,6 +65,7 @@ function AddWorkoutPage (props: Props) {
                         Workout name:
                         <input
                             type="text"
+                            value={name}
                             onChange={(event) => setName(event.target.value)}
                         />
                     </label>
@@ -72,6 +75,7 @@ function AddWorkoutPage (props: Props) {
                         Description:
                         <input
                             type="text"
+                            value={description}
                             onChange={(event) => setDescription(event.target.value)}
                         />
                     </label>
@@ -81,6 +85,7 @@ function AddWorkoutPage (props: Props) {
                         Plan:
                         <input
                             type="text"
+                            value={plan}
                             onChange={(event) => setPlan(event.target.value)}
                         />
                     </label>
