@@ -31,7 +31,7 @@ public class WorkoutService {
                 .id(id)
                 .day(updateWorkout.day())
                 .workoutName(updateWorkout.workoutName())
-                .description(updateWorkout.workoutName())
+                .description(updateWorkout.description())
                 .plan(updateWorkout.plan())
                 .build();
 

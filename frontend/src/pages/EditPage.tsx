@@ -1,9 +1,11 @@
 import "./EditPage.css";
-import {useLocation} from "react-router-dom";
+import {NavigateFunction, useLocation, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios from "axios";
+import {WorkoutChange} from "../interfaces/types.ts";
 
-function EditPage() {
+function EditPage(props: WorkoutChange) {
+    const navigate:NavigateFunction = useNavigate();
     const location = useLocation();
     const workout = location.state.workout;
 
@@ -14,7 +16,6 @@ function EditPage() {
 
     function handleSubmit(event:React.FormEvent<HTMLFormElement>):void {
         event.preventDefault();
-
         axios.put(`/api/workouts/${workout.id}`,{
             day: day,
             workoutName: name,
@@ -22,7 +23,8 @@ function EditPage() {
             plan: plan
         })
             .then(()=> {
-
+                props.onWorkoutChange();
+                navigate(`/workout/${workout.id}`);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -30,16 +32,34 @@ function EditPage() {
     }
 
     return (
-        <div id={"page-edit"}>
+        <>
             <h2>Edit Page</h2>
             <form onSubmit={handleSubmit}>
+                <div className={"input-field"}>
+                    <label>
+                        Day
+                        <select
+                            value={day}
+                            onChange={(event: React.ChangeEvent<HTMLSelectElement>) => setDay(event.target.value)}
+                        >
+                            <option value={"MONDAY"}>MONDAY</option>
+                            <option value={"TUESDAY"}>TUESDAY</option>
+                            <option value={"WEDNESDAY"}>WEDNESDAY</option>
+                            <option value={"THURSDAY"}>THURSDAY</option>
+                            <option value={"FRIDAY"}>FRIDAY</option>
+                            <option value={"SATURDAY"}>SATURDAY</option>
+                            <option value={"SUNDAY"}>SUNDAY</option>
+                        </select>
+                    </label>
+                </div>
+
                 <div className={"input-field"}>
                     <label>
                         Workout Name
                         <input
                             type={"text"}
                             value={name}
-                            onChange={(event)=>setName(event.target.value)}
+                            onChange={(event: React.ChangeEvent<HTMLInputElement>)=>setName(event.target.value)}
                         />
                     </label>
                 </div>
@@ -50,7 +70,7 @@ function EditPage() {
                         <input
                             type={"text"}
                             value={description}
-                            onChange={(event)=>{setDescription(event.target.value)}}
+                            onChange={(event: React.ChangeEvent<HTMLInputElement>)=>{setDescription(event.target.value)}}
                         />
                     </label>
                 </div>
@@ -61,14 +81,14 @@ function EditPage() {
                         <input
                             type={"text"}
                             value={plan}
-                            onChange={(event)=>{setPlan(event.target.value)}}
+                            onChange={(event: React.ChangeEvent<HTMLInputElement>)=>{setPlan(event.target.value)}}
                         />
                     </label>
                 </div>
                 <input type={"submit"}/>
             </form>
 
-        </div>
+        </>
     )
 }
 
