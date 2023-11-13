@@ -27,6 +27,7 @@ public class WorkoutService {
     }
 
     public Workout updateWorkout(String id, UpdateWorkout updateWorkout) {
+        getWorkoutById(id);
         Workout workoutToUpdate = Workout.builder()
                 .id(id)
                 .day(updateWorkout.day())
