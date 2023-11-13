@@ -38,4 +38,3 @@ public class WorkoutService {
         return workoutRepo.save(workoutToUpdate);
     }
 }
-

@@ -87,7 +87,6 @@ function EditPage(props: WorkoutChange) {
                 </div>
                 <input type={"submit"}/>
             </form>
-
         </>
     )
 }
