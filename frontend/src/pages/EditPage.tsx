@@ -5,7 +5,6 @@ import axios from "axios";
 
 function EditPage() {
     const location = useLocation();
-    const navigate
     const workout = location.state.workout;
 
     const [day, setDay] = useState(workout.day)
