@@ -4,12 +4,14 @@ import axios from "axios";
 import {Route, Routes} from "react-router-dom";
 import Home from "./pages/Home.tsx";
 import {Workout} from "./interfaces/types.ts";
+import AddWorkoutPage from "./pages/AddWorkoutPage.tsx";
+
 
 function App() {
 
     const[workouts, setWorkouts] = useState<Workout[]>([]);
 
-    useEffect(() => {
+    function fetchData() {
         axios.get('/api/workouts')
             .then(response => {
                 setWorkouts(response.data)
@@ -17,7 +19,10 @@ function App() {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }
+
+    useEffect(() => fetchData(), []);
+
 
   return (
     <>
@@ -25,6 +30,7 @@ function App() {
         <div className={"container"}>
             <Routes>
                 <Route path={"/"} element={<Home workouts={workouts} setWorkouts={setWorkouts}/>} />
+                <Route path={"/workouts/add"} element={<AddWorkoutPage setWorkouts={fetchData} />} />
             </Routes>
         </div>
     </>
