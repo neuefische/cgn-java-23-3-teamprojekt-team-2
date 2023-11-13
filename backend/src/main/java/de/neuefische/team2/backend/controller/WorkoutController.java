@@ -1,6 +1,7 @@
 package de.neuefische.team2.backend.controller;
 
 import de.neuefische.team2.backend.exceptions.NoSuchWorkout;
+import de.neuefische.team2.backend.models.UpdateWorkout;
 import de.neuefische.team2.backend.models.Workout;
 import de.neuefische.team2.backend.service.WorkoutService;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,11 @@ public class WorkoutController {
     @PostMapping("")
     public Workout addWorkout(@RequestBody Workout workout) {
         return workoutService.addWorkout(workout);
+    }
+
+    @PutMapping("/{id}")
+    public Workout updateWorkout(@PathVariable String id, @RequestBody UpdateWorkout updateWorkout) {
+        return workoutService.updateWorkout(id, updateWorkout);
     }
 
     @ExceptionHandler(NoSuchWorkout.class)

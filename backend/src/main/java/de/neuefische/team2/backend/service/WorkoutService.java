@@ -1,6 +1,7 @@
 package de.neuefische.team2.backend.service;
 
 import de.neuefische.team2.backend.exceptions.NoSuchWorkout;
+import de.neuefische.team2.backend.models.UpdateWorkout;
 import de.neuefische.team2.backend.models.Workout;
 import de.neuefische.team2.backend.repository.WorkoutRepo;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,18 @@ public class WorkoutService {
 
     public Workout getWorkoutById(String id) {
         return workoutRepo.findById(id).orElseThrow(NoSuchWorkout::new);
+    }
+
+    public Workout updateWorkout(String id, UpdateWorkout updateWorkout) {
+        Workout workoutToUpdate = Workout.builder()
+                .id(id)
+                .day(updateWorkout.day())
+                .workoutName(updateWorkout.workoutName())
+                .description(updateWorkout.workoutName())
+                .plan(updateWorkout.plan())
+                .build();
+
+        return workoutRepo.save(workoutToUpdate);
     }
 }
 
