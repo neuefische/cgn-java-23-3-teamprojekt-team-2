@@ -1,19 +1,39 @@
 import "./EditPage.css";
 import {useLocation} from "react-router-dom";
 import {useState} from "react";
+import axios from "axios";
 
 function EditPage() {
     const location = useLocation();
+    const navigate
     const workout = location.state.workout;
 
+    const [day, setDay] = useState(workout.day)
     const [name,setName] = useState<string>(workout.workoutName)
     const [description,setDescription] = useState<string>(workout.description)
     const [plan,setPlan] = useState<string>(workout.plan)
 
+    function handleSubmit(event:React.FormEvent<HTMLFormElement>):void {
+        event.preventDefault();
+
+        axios.put(`/api/workouts/${workout.id}`,{
+            day: day,
+            workoutName: name,
+            description: description,
+            plan: plan
+        })
+            .then(()=> {
+
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+
     return (
         <div id={"page-edit"}>
             <h2>Edit Page</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className={"input-field"}>
                     <label>
                         Workout Name
@@ -46,7 +66,9 @@ function EditPage() {
                         />
                     </label>
                 </div>
+                <input type={"submit"}/>
             </form>
+
         </div>
     )
 }
