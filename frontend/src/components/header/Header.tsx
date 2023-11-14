@@ -3,8 +3,8 @@ import {Link} from "react-router-dom";
 
 function Header() {
     return (
-        <header>
-            <p className={"logo"}>Fatty2Fitty</p>
+        <header className={"header-border"}>
+            <img className={"logo"} src="src/assets/f2f_logo_.png" />
             <nav className={"nav-main"}>
                 <ul>
                     <li> <Link to={"/"}>Home</Link></li>

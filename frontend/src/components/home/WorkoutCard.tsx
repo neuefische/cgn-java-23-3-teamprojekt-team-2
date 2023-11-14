@@ -17,18 +17,20 @@ function WorkoutCard (props: TypeWorkoutCard) {
     }
 
     return (
-        <section
+        <section 
+            className={"workout-card card-shadow"} 
             role={"button"}
             onClick={handleClick}
             onKeyDown={handleKeyDown}
             tabIndex={0}
-            aria-labelledby={`workoutName-${props.workout.id}`}
-            className={"workout-card"}
+            aria-labelledby={`workoutName-${props.workout.id}`
         >
-            <h3 id={`workoutName-${props.workout.id}`}>{props.workout.workoutName}</h3>
-            <p>{props.workout.plan}</p>
-            <p>{props.workout.day}</p>
-            <p>{props.workout.description}</p>
+            <div className={"workout-card-header"}>
+                <h3 id={`workoutName-${props.workout.id}`}>{props.workout.workoutName}</h3>
+                <p>{props.workout.plan}</p>
+                <p className={"workout-day"}>{props.workout.day}</p>
+            </div>
+            <p className={"description"}>{props.workout.description}</p>
         </section>
     );
 }

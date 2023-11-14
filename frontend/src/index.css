@@ -1,9 +1,19 @@
-/* Genrell styles */
+/* General styles */
 :root {
-    --main-color: #222831;
-    --secondary-color: #393e46;
-    --color-3: #f96d00;
-    --color-4: #f2f2f2;
+    /*Farben bestimmen*/
+    --color-1: #111111;
+    --color-2: #1f1f1f;
+    --color-3: #f69a17;
+    --color-31: #F96D00;
+    --color-4: #cecece;
+
+    --border-gradient-gray: radial-gradient(circle at 100% 100%, #1f1f1f 0, #1f1f1f 19px, transparent 19px) 0% 0%/20px 20px no-repeat,
+                            radial-gradient(circle at 0 100%, #1f1f1f 0, #1f1f1f 19px, transparent 19px) 100% 0%/20px 20px no-repeat,
+                            radial-gradient(circle at 100% 0, #1f1f1f 0, #1f1f1f 19px, transparent 19px) 0% 100%/20px 20px no-repeat,
+                            radial-gradient(circle at 0 0, #1f1f1f 0, #1f1f1f 19px, transparent 19px) 100% 100%/20px 20px no-repeat,
+                            linear-gradient(#1f1f1f, #1f1f1f) 50% 50%/calc(100% - 2px) calc(100% - 40px) no-repeat,
+                            linear-gradient(#1f1f1f, #1f1f1f) 50% 50%/calc(100% - 40px) calc(100% - 2px) no-repeat,
+                            linear-gradient(90deg, #5a5b5b 0%, #60676c 40%, #abaeb2 100%);
 }
 
 * {
@@ -18,8 +28,49 @@ html {
     color: var(--color-4);
 }
 
+body {
+    background: var(--color-1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .container {
-    padding: 40px 90px;
+    padding: 40px 100px;
+    max-width: 1200px;
     min-height: 100vh;
-    background-color: #1f1f1f;
+    margin: 130px auto;
+}
+
+h3 {
+    font-size: 1.4rem;
+}
+
+.card-shadow {
+    box-shadow:  3px 10px 12px var(--color-2),
+                 3px 5px 10px var(--color-31);
+}
+
+.footer-shadow {
+    box-shadow:  1px 4px 5px var(--color-1),
+                 1px -1px 5px var(--color-31);
+}
+
+.gradient-border {
+    border-radius: 20px;
+    border: solid var(--border-gradient-gray);
+}
+
+label {
+    color: var(--color-3);
+}
+
+input {
+    border: solid 1px var(--color-4);
+    border-radius: 10px;
+    height: 35px;
+    width: 300px;
+    padding: 0 10px;
+    background-color: var(--color-1);
+    color: var(--color-4);
 }

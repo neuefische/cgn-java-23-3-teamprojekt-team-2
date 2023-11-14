@@ -4,6 +4,7 @@ import axios from "axios";
 import {Route, Routes} from "react-router-dom";
 import Home from "./pages/Home.tsx";
 import {Workout} from "./interfaces/types.ts";
+import Footer from "./components/header/Footer.tsx";
 import AddWorkoutPage from "./pages/AddWorkoutPage.tsx";
 import DetailsPage from "./pages/DetailsPage.tsx";
 import EditPage from "./pages/EditPage.tsx";
@@ -34,6 +35,7 @@ function App() {
                 <Route path={"/workout/:id/edit"} element={<EditPage onWorkoutChange={fetchData}/>} />
             </Routes>
         </div>
+        <Footer />
     </>
   );
 }
