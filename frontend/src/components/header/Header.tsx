@@ -8,7 +8,7 @@ function Header() {
             <nav className={"nav-main"}>
                 <ul>
                     <li> <Link to={"/"}>Home</Link></li>
-                    <li>Add</li>
+                    <li> <Link to={"/workouts/add"}>Add</Link></li>
                 </ul>
             </nav>
         </header>

@@ -63,6 +63,18 @@ class WorkoutServiceTest {
     }
 
     @Test
+    void testAddWorkout() {
+        //GIVEN
+        Workout expected = new Workout("1", Weekday.TUESDAY, "Testworkout", "Testdescription", "Testplan");
+        //WHEN
+        when(mockWorkoutRepo.save(expected)).thenReturn(expected);
+        //THEN
+        Workout actual = workoutService.addWorkout(expected);
+        verify(mockWorkoutRepo).save(expected);
+        assertEquals(expected, actual);
+    }
+  
+    @Test
     void updateWorkout_whenWorkoutIdExistsInDb_thenReturnUpdatedWorkout() {
         Workout workoutBefore = Workout.builder()
                 .id("1")
