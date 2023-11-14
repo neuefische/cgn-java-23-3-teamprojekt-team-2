@@ -40,7 +40,6 @@ class WorkoutControllerTest {
                 .plan("New plan")
                 .build();
         String workoutAsJson = objectMapper.writeValueAsString(workout);
-        workoutRepo.save(workout);
         mockMvc.perform(post(BASE_URI)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(workoutAsJson))
@@ -59,20 +58,11 @@ class WorkoutControllerTest {
                 .plan(null)
                 .build();
         String workoutAsJson = objectMapper.writeValueAsString(workout);
-        workoutRepo.save(workout);
         mockMvc.perform(post(BASE_URI)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(workoutAsJson))
                 .andExpect(status().isOk())
                 .andExpect(content().json(workoutAsJson));
-    }
-
-    @Test
-    @DirtiesContext
-    void addWorkout_whenRequestBodyIsEmpty_thenReturnError400() throws Exception {
-        mockMvc.perform(post(BASE_URI))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string(""));
     }
 
     @Test

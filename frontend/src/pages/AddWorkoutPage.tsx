@@ -22,6 +22,7 @@ function AddWorkoutPage (props: Props) {
                 description: description,
                 plan: plan,
             };
+
             axios.post('/api/workouts', newWorkoutData)
                 .then(response => {
                     props.setWorkouts()
