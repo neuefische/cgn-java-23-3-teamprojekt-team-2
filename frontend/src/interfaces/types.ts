@@ -1,5 +1,5 @@
 export type Workout = {
-    id:string,
+    id?:string,
     day: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY",
     workoutName:string,
     description:string,
@@ -13,4 +13,8 @@ export type TypeHome = {
 
 export type TypeWorkoutCard = {
     workout: Workout
+}
+
+export type WorkoutChange = {
+    onWorkoutChange: () => void
 }
