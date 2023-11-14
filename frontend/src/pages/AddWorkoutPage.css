@@ -1,4 +1,13 @@
 .add-workout {
-    color: white;
-    font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 150px;
+        max-width: 90%;
+        left: 0;
+        right: 0;
+        margin: 0 auto 25px ;
+        padding: 15px 20px;
+        border-radius: 20px;
+        background: var(--border-gradient-gray);
 }
