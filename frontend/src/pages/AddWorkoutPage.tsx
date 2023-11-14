@@ -8,7 +8,7 @@ type Props = {
 
 function AddWorkoutPage (props: Props) {
 
-    const [day,setDay] = useState<"MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY">();
+    const [day,setDay] = useState("");
     const [name,setName] = useState("");
     const [description,setDescription] = useState("");
     const [plan,setPlan] = useState("");
@@ -48,20 +48,26 @@ function AddWorkoutPage (props: Props) {
     return (
         <main>
             <div className={"add-workout"}>
-                <p>Add new workout </p>
+                <h4>Add...
+                    <br/>
+                    <span className={"style-orange"}>Your</span> new workout</h4>
                 <form onSubmit={handleSubmit}>
-                    <fieldset>
-                        <legend>Workout day</legend>
-                        <label><input type="radio" name="weekday" value="MONDAY" onChange={handleChange} required={true}/> Mon </label>
-                        <label><input type="radio" name="weekday" value="TUESDAY" onChange={handleChange} required={true}/> Tue </label>
-                        <label><input type="radio" name="weekday" value="WEDNESDAY" onChange={handleChange} required={true}/> Wed </label>
-                        <label><input type="radio" name="weekday" value="THURSDAY" onChange={handleChange} required={true}/> Thu </label>
-                        <label><input type="radio" name="weekday" value="FRIDAY" onChange={handleChange} required={true}/> Fri </label>
-                        <label><input type="radio" name="weekday" value="SATURDAY" onChange={handleChange} required={true}/> Sat </label>
-                        <label><input type="radio" name="weekday" value="SUNDAY" onChange={handleChange} required={true}/> Sun </label>
-                    </fieldset>
-                    <br></br>
-
+                    <label>
+                        Day
+                        <select
+                            value={day}
+                            onChange={(event: React.ChangeEvent<HTMLSelectElement>) => setDay(event.target.value)}
+                        >
+                            <option value={"MONDAY"}>MONDAY</option>
+                            <option value={"TUESDAY"}>TUESDAY</option>
+                            <option value={"WEDNESDAY"}>WEDNESDAY</option>
+                            <option value={"THURSDAY"}>THURSDAY</option>
+                            <option value={"FRIDAY"}>FRIDAY</option>
+                            <option value={"SATURDAY"}>SATURDAY</option>
+                            <option value={"SUNDAY"}>SUNDAY</option>
+                        </select>
+                    </label>
+                <div className={"input-wrapper"}>
                     <label>
                         Workout name:
                         <input
@@ -70,8 +76,6 @@ function AddWorkoutPage (props: Props) {
                             onChange={(event) => setName(event.target.value)}
                         />
                     </label>
-                    <br></br>
-
                     <label>
                         Description:
                         <input
@@ -80,8 +84,6 @@ function AddWorkoutPage (props: Props) {
                             onChange={(event) => setDescription(event.target.value)}
                         />
                     </label>
-                    <br></br>
-
                     <label>
                         Plan:
                         <input
@@ -90,7 +92,7 @@ function AddWorkoutPage (props: Props) {
                             onChange={(event) => setPlan(event.target.value)}
                         />
                     </label>
-                    <br></br>
+                </div>
 
                     <br></br>
                     <button type="submit">Add workout</button>

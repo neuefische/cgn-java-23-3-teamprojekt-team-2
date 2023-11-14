@@ -10,7 +10,13 @@
     padding: 15px 20px;
     border-radius: 20px;
     background: var(--border-gradient-gray);
+    transition: .3s;
+    cursor: pointer;
 }
+
+.workout-card:hover {
+    scale: 1.05;
+    }
 
 .workout-card-header{
     display: flex;
