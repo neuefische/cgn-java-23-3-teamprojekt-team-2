@@ -14,3 +14,7 @@ export type TypeHome = {
 export type TypeWorkoutCard = {
     workout: Workout
 }
+
+export type WorkoutChange = {
+    onWorkoutChange: () => void
+}
