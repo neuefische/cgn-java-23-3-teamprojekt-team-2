@@ -1,10 +1,10 @@
 import "./DetailsPage.css";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {Workout} from "../interfaces/types.ts";
+import {Workout, WorkoutChange} from "../interfaces/types.ts";
 import {useEffect, useState} from "react";
 import axios, {AxiosResponse} from "axios";
 
-function DetailsPage() {
+function DetailsPage(props: WorkoutChange) {
     const {id} = useParams();
     const [workout, setWorkout] = useState<Workout>();
     const [error, setError] = useState<boolean>(false)
@@ -23,11 +23,19 @@ function DetailsPage() {
             });
     }, [id]);
 
-    function handleClick() {
+    function handleClickEdit() {
         workout && navigate(
             `/workout/${workout.id}/edit`,
             {state:{workout: workout}}
         );
+    }
+
+    function handleClickDelete() {
+        axios.delete(`/api/workouts/${workout.id}`)
+            .then(() => {
+                props.onWorkoutChange();
+                navigate("/");
+            })
     }
 
     if (isLoading) {
@@ -61,7 +69,8 @@ function DetailsPage() {
                 <div className={"details-page-main"} >
                     <p className={"details-page-description"}>{workout.description}</p>
                     <p>{workout.plan}</p>
-                    <button onClick={handleClick} className={"btn-edit"}>Edit</button>
+                    <button onClick={handleClickEdit} className={"btn-edit"}>Edit</button>
+                    <button onClick={handleClickDelete} className={"btn-delete"}>Delete</button>
                 </div>
             </section>
         );

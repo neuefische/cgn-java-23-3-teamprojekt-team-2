@@ -16,8 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -170,5 +169,23 @@ class WorkoutControllerTest {
                         .content(updateWorkoutAsJson))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string("There is no workout with this id"));
+    }
+
+    @Test
+    @DirtiesContext
+    void deleteWorkout() throws Exception {
+        Workout workout = Workout.builder()
+                .id("1")
+                .day(Weekday.WEDNESDAY)
+                .workoutName("New workout")
+                .description("New description")
+                .plan("New plan")
+                .build();
+        workoutRepo.save(workout);
+        mockMvc.perform(delete(BASE_URI + "/" + workout.id()))
+                .andExpect(status().isOk());
+        mockMvc.perform(get(BASE_URI))
+                .andExpect(status().isOk())
+                .andExpect(content().string("[]"));
     }
 }

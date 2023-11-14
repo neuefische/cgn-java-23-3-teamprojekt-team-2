@@ -36,6 +36,10 @@ public class WorkoutController {
     public Workout updateWorkout(@PathVariable String id, @RequestBody UpdateWorkout updateWorkout) {
         return workoutService.updateWorkout(id, updateWorkout);
     }
+    @DeleteMapping("/{id}")
+    public void deleteWorkout(@PathVariable String id) {
+        workoutService.deleteWorkout(id);
+    }
 
     @ExceptionHandler(NoSuchWorkout.class)
     public ResponseEntity<String> handleNoSuchWorkoutException(NoSuchWorkout e) {
