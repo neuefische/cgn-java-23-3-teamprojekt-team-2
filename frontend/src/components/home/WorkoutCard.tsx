@@ -4,11 +4,13 @@ import "./WorkoutCard.css";
 function WorkoutCard (props: TypeWorkoutCard) {
 
     return (
-        <section className={"workout-card"}>
-            <h3>{props.workout.workoutName}</h3>
-            <p>{props.workout.plan}</p>
-            <p>{props.workout.day}</p>
-            <p>{props.workout.description}</p>
+        <section className={"workout-card card-shadow"}>
+            <div className={"workout-card-header"}>
+                <h3>{props.workout.workoutName}</h3>
+                <p>{props.workout.plan}</p>
+                <p className={"workout-day"}>{props.workout.day}</p>
+            </div>
+                <p className={"description"}>{props.workout.description}</p>
         </section>
     );
 }

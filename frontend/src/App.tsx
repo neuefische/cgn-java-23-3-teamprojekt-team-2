@@ -4,6 +4,7 @@ import axios from "axios";
 import {Route, Routes} from "react-router-dom";
 import Home from "./pages/Home.tsx";
 import {Workout} from "./interfaces/types.ts";
+import Footer from "./components/header/Footer.tsx";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
                 <Route path={"/"} element={<Home workouts={workouts} setWorkouts={setWorkouts}/>} />
             </Routes>
         </div>
+        <Footer />
     </>
   );
 }
