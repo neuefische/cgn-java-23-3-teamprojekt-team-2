@@ -23,7 +23,7 @@ function WorkoutCard (props: TypeWorkoutCard) {
             onClick={handleClick}
             onKeyDown={handleKeyDown}
             tabIndex={0}
-            aria-labelledby={`workoutName-${props.workout.id}`
+            aria-labelledby={`workoutName-${props.workout.id}`}
         >
             <div className={"workout-card-header"}>
                 <h3 id={`workoutName-${props.workout.id}`}>{props.workout.workoutName}</h3>
