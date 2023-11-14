@@ -31,7 +31,7 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<Home workouts={workouts} setWorkouts={setWorkouts}/>} />
                 <Route path={"/workouts/add"} element={<AddWorkoutPage setWorkouts={fetchData} />} />
-                <Route path={"/workout/:id"} element={<DetailsPage />} />
+                <Route path={"/workout/:id"} element={<DetailsPage onWorkoutChange={fetchData} />} />
                 <Route path={"/workout/:id/edit"} element={<EditPage onWorkoutChange={fetchData}/>} />
             </Routes>
         </div>

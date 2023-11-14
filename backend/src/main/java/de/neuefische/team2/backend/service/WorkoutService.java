@@ -38,4 +38,8 @@ public class WorkoutService {
 
         return workoutRepo.save(workoutToUpdate);
     }
+
+    public void deleteWorkout(String id) {
+        workoutRepo.deleteById(id);
+    }
 }

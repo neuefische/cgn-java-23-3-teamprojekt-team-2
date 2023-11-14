@@ -120,4 +120,11 @@ class WorkoutServiceTest {
         verify(mockWorkoutRepo).findById("invalidId");
         verify(mockWorkoutRepo,never()).save(any(Workout.class));
     }
+
+    @Test
+    void deleteWorkout() {
+        String workoutId = "1";
+        workoutService.deleteWorkout(workoutId);
+        verify(mockWorkoutRepo).deleteById(workoutId);
+    }
 }
